@@ -1,0 +1,1 @@
+This folder will contain figures produced by the scripts in the `tests` folder.
