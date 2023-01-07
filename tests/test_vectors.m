@@ -15,7 +15,7 @@ names = {'flat','poly','slowexp','fastexp','smallstep','bigstep'};
 
 %% Methods
 
-method = @xnystrace;
+method = @xtrace;
 test_vector_types = {'rademacher', 'gaussian', 'unif', 'improved'};
 markers = {'x','v','>','pentagram'};
 markersizes = [7 10 15 10];
