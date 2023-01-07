@@ -1,4 +1,4 @@
-function trest = nystrompp(matvec,n,m)
+function trest = nystrompp(matvec,n,m,varargin)
 % NYSTROMPP Nystrom++ trace estimator
 % Implementation is a modification of:
 %   https://github.com/davpersson/A-Hutch-/blob/main/Nystrom%2B%2B/nystrompp.m
