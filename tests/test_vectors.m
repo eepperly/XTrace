@@ -25,7 +25,7 @@ markercolors = {"#0072BD","#D95319",'none',"#7E2F8E"};
 
 %% Parameters for experiments
 
-ks = 20:20:300;
+ms = 20:20:300;
 num_trials = 1000;
 
 %% Run experiments
@@ -39,17 +39,17 @@ for i = 1:length(As)
         test_vector_type = test_vector_types{j};
         
         errors = [];
-        for k = ks
+        for m = ms
             errs = [];
             for l = 1:num_trials
-                errs(end+1) = abs(method(@(x) A*x, n, k, ...
+                errs(end+1) = abs(method(@(x) A*x, n, m, ...
                     test_vector_type) - trace_A);
             end
             errors(end+1) = mean(errs) / trace_A;
         end
         
         figure(i)
-        semilogy(ks, errors, 'LineWidth', 1.5, 'Marker', markers{j},...
+        semilogy(ms, errors, 'LineWidth', 1.5, 'Marker', markers{j},...
             'Color', colors{j}, 'MarkerFaceColor', markercolors{j},...
             'LineStyle', styles{j}, 'MarkerSize', markersizes(j)); hold on
         set(gca, 'YScale', 'log')

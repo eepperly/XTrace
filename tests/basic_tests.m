@@ -25,7 +25,7 @@ markers = 'os*<x^';
 
 %% Parameters for experiments
 
-ks = 20:20:300;
+ms = 20:20:300;
 num_trials = 1000;
 
 %% Run experiments
@@ -41,16 +41,16 @@ for i = 1:length(As)
         marker = markers(j);
         
         errors = [];
-        for k = ks
+        for m = ms
             errs = [];
             for l = 1:num_trials
-                errs(end+1) = abs(method(@(x) A*x, n, k, 'signs')-trace_A);
+                errs(end+1) = abs(method(@(x) A*x, n, m, 'signs')-trace_A);
             end
             errors(end+1) = mean(errs) / trace_A;
         end
         
         figure(i)
-        semilogy(ks, errors, 'LineWidth', 1.5, 'MarkerSize', 10, ...
+        semilogy(ms, errors, 'LineWidth', 1.5, 'MarkerSize', 10, ...
             'Color', color, 'MarkerFaceColor', color, 'Marker', marker);
         hold on
         set(gca, 'YScale', 'log')
