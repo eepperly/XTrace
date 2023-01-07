@@ -14,6 +14,8 @@ As = {rand_with_evals(linspace(1,3,n)),...
 names = {'flat','poly','slowexp','fastexp','smallstep','bigstep'};
 
 %% Methods
+
+method = @xtrace;
 test_vector_types = {'rademacher', 'gaussian', 'unif', 'improved'};
 markers = {'x','v','>','pentagram'};
 markersizes = [7 10 15 10];
@@ -24,7 +26,7 @@ markercolors = {"#0072BD","#D95319",'none',"#7E2F8E"};
 %% Parameters for experiments
 
 ks = 20:20:300;
-num_trials = 1000;
+num_trials = 10;
 
 %% Run experiments
 close all
@@ -37,15 +39,13 @@ for i = 1:length(As)
         test_vector_type = test_vector_types{j};
         
         errors = [];
-        stds = [];
         for k = ks
             errs = [];
             for l = 1:num_trials
-                errs(end+1) = abs(xtrace(@(x) A*x, n, k, ...
+                errs(end+1) = abs(method(@(x) A*x, n, k, ...
                     test_vector_type) - trace_A);
             end
             errors(end+1) = mean(errs) / trace_A;
-            stds(end+1) = std(errs) / trace_A;
         end
         
         figure(i)

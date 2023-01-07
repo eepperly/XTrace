@@ -2,32 +2,7 @@ function [t,err] = xtrace(matvec, n, m, varargin)
 m = floor(m/2);
 
 %% Choose test matrix
-improved = false;
-if isempty(varargin) || strcmp(varargin{1}, 'improved')
-    improved = true;
-    Om = sqrt(n) * cnormc(randn(n,m));
-elseif strcmp(varargin{1}, 'cimproved')
-    improved = true;
-    Om = sqrt(n) * cnormc(randn(n,m) + 1i*randn(n,m));
-elseif strcmp(varargin{1}, 'rademacher') || strcmp(varargin{1}, 'signs')
-    Om = -3 + 2*randi(2,n,m); % Rademacher random matrix
-elseif strcmp(varargin{1}, 'steinhaus') || strcmp(varargin{1}, 'csigns')
-    Om = exp(2*pi*1i*rand(n,m)); 
-elseif strcmp(varargin{1}, 'gaussian')
-    Om = randn(n,m);
-elseif strcmp(varargin{1}, 'cgaussian')
-    Om = 1/sqrt(2) * randn(n,m) + 1i/sqrt(2)*randn(n,m);
-elseif strcmp(varargin{1}, 'unif')
-    Om = sqrt(n) * normc(randn(n,m));
-elseif strcmp(varargin{1}, 'cunif')
-    Om = sqrt(n) * normc(randn(n,m)+1i*randn(n,m));
-elseif strcmp(varargin{1}, 'orth')
-    Om = sqrt(n)*orth(randn(n,m));
-elseif strcmp(varargin{1}, 'corth')
-    Om = sqrt(n)*orth(randn(n,m) + 1i*randn(n,m));
-else 
-    error('"%s" not recognized as matrix type', varargin{1})
-end
+[Om,improved] = generate_test_matrix(n,m,'improved',varargin{:});
 
 %% Randomized SVD
 Y = matvec(Om); 
