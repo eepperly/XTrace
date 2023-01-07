@@ -24,7 +24,7 @@ markercolors = {"#0072BD","#D95319",'none',"#7E2F8E"};
 %% Parameters for experiments
 
 ks = 20:20:300;
-num_trials = 10;
+num_trials = 1000;
 
 %% Run experiments
 close all
