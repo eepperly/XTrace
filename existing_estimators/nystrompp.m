@@ -31,8 +31,8 @@ function trest = nystrompp(matvec,n,m,varargin)
 
 %Generate random matrices
 addpath('../code')
-Omega = generate_test_matrix(n,ceil(m/2),'signs');
-Psi = generate_test_matrix(n,floor(m/2),'signs');
+Omega = generate_test_matrix(n,ceil(m/2),'signs',varargin{:});
+Psi = generate_test_matrix(n,floor(m/2),'signs',varargin{:});
 
 %Compute matrix products with A
 Y = matvec(Omega); Z = matvec(Psi);
