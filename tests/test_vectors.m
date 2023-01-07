@@ -15,7 +15,7 @@ names = {'flat','poly','slowexp','fastexp','smallstep','bigstep'};
 
 %% Methods
 
-method = @xtrace;
+method = @xnystrace;
 test_vector_types = {'rademacher', 'gaussian', 'unif', 'improved'};
 markers = {'x','v','>','pentagram'};
 markersizes = [7 10 15 10];
@@ -26,7 +26,7 @@ markercolors = {"#0072BD","#D95319",'none',"#7E2F8E"};
 %% Parameters for experiments
 
 ks = 20:20:300;
-num_trials = 10;
+num_trials = 1000;
 
 %% Run experiments
 close all

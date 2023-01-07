@@ -1,3 +1,9 @@
+%% Set up
+
+rng(42)
+addpath('../code/')
+addpath('../existing_estimators/')
+
 %% Generate test matrices
 
 n = 1000;
@@ -11,8 +17,6 @@ names = {'flat','poly','slowexp','fastexp','smallstep','bigstep'};
 
 %% Methods
 
-addpath('../code/')
-addpath('../existing_estimators/')
 methods = {@hutch, @lra, @hutch_plusplus, @nystrompp, @xtrace, @xnystrace};
 method_names = {'Hutch', 'LRA', 'Hutch++', 'Nystr\"om++', 'XTrace',...
     'NysTrace'};
