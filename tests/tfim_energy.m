@@ -24,11 +24,11 @@ for i = 1:length(hs)
         fprintf('**Z**\n')
         [Zs(i,j),Z_ests(i,j),Z_ms(i,j)] = ...
             xnystrace_tol(@(x) expmv(1,-beta*H_shift,x),size(H,1),...
-            0,tol);
+            0,tol,'signs');
         fprintf('**EZ**\n')
         [EZ,EZ_ests(i,j),EZ_ms(i,j)] = ...
             xnystrace_tol(@(x) expmv(1,-beta*H_shift,H_shift*x), ...
-            size(H,1),0,tol);
+            size(H,1),0,tol,'signs');
         Es(i,j) = EZ / Zs(i,j) + b;
     end
 end

@@ -27,13 +27,13 @@ for i = 1:length(ms)
         fprintf('.')
         t = hutch(@(x) expmv(1,-beta*H_shift,x),2^n,m);
         hutch_errs(i,j) = abs(t - exact) / exact;
-        [t,s] = xnystrace(@(x) expmv(1,-beta*H_shift,x),2^n,m);
+        [t,s] = xnystrace(@(x) expmv(1,-beta*H_shift,x),2^n,m,'signs');
         xnystrace_ests(i,j) = s / exact;
         xnystrace_errs(i,j) = abs(t - exact) / exact;
-        [t,s] = xtrace(@(x) expmv(1,-beta*H_shift,x),2^n,m);
+        [t,s] = xtrace(@(x) expmv(1,-beta*H_shift,x),2^n,m,'signs');
         xtrace_ests(i,j) = s / exact;
         xtrace_errs(i,j) = abs(t - exact) / exact;
-        t = hutch_plusplus(@(x) expmv(1,-beta*H_shift,x),2^n,m);
+        t = hutch_plusplus(@(x) expmv(1,-beta*H_shift,x),2^n,m,'signs');
         hutchpp_errs(i,j) = abs(t - exact) / exact;
     end
     fprintf('\n')
