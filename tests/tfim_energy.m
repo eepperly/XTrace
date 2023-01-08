@@ -1,5 +1,6 @@
 addpath('../code')
 check_expmv
+rng(42)
 
 hs = logspace(-1,1,10);
 betas = logspace(-1,1,10);

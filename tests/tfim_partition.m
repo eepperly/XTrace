@@ -2,6 +2,7 @@
 addpath('../code')
 addpath('../existing_estimators')
 check_expmv
+rng(42)
 
 %% Run experiments
 

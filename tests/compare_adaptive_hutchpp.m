@@ -1,6 +1,7 @@
 %% Setup
 addpath('../code')
 addpath('../existing_estimators')
+rng(42)
 
 %% Generate test matrices
 
