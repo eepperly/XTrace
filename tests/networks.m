@@ -1,6 +1,6 @@
 %% Setup
 addpath('../code')
-addpath('../existing_estimators/')
+addpath('../existing_estimators')
 check_expmv
 
 if exist('yeast.mat', 'file')
