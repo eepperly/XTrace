@@ -13,7 +13,7 @@ end
 
 %% Quantities needed for trace estimation
 H = Q'*Z; HW = H*W; T=Z'*Om;
-dSW = diag_prod(W, S); dSHS = diag_prod(S, H*S);
+dSW = diag_prod(S, W); dSHS = diag_prod(S, H*S);
 dTW = diag_prod(T, W); dWHW = diag_prod(W, HW);
 dSRmHW = diag_prod(S, R-HW); dTmHRS = diag_prod(T-H'*W,S);
 
