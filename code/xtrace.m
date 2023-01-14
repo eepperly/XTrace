@@ -4,5 +4,5 @@ m = floor(m/2);
 Y = matvec(Om);
 [Q,R] = qr(Y,0);
 Z = matvec(Q);
-[t,err] = xtrace_helper(Y,Om,Z,Q,R,improved);
+[t,err] = xtrace_helper(Om,Z,Q,R,improved);
 end

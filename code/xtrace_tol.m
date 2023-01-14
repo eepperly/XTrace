@@ -9,7 +9,7 @@ while err >= abstol + reltol * t
     Y = [Y matvec(NewOm)]; Om = [Om NewOm];%#ok<AGROW> 
     [Q,R] = qr(Y,0);
     Z = [Z matvec(Q(:,size(Z,2)+1:end))]; %#ok<AGROW> 
-    [t,err] = xtrace_helper(Y, Om, Z, Q, R, improved);
+    [t,err] = xtrace_helper(Om, Z, Q, R, improved);
 end
 m = 2*size(Z,2);
 end

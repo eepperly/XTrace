@@ -1,4 +1,4 @@
-function [t,err] = xtrace_helper(Y, Om, Z, Q, R, improved)
+function [t,err] = xtrace_helper(Om, Z, Q, R, improved)
 
 %% Normalization
 [n,m] = size(Om);
