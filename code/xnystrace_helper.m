@@ -22,9 +22,8 @@ end
 warning('off','MATLAB:nearlySingularMatrix');
 W = Q'*Om; S = (B/C') .* (diag(inv(H))').^(-0.5);
 warning('on','MATLAB:nearlySingularMatrix');
-dSW = diag_prod(S, W).'; dOmY = diag_prod(Om, Y).';
-ests = norm(B,'fro')^2 - vecnorm(S).^2 + (dOmY - vecnorm(B'*W).^2 ...
-    + abs(dSW).^2) .* scale - nu*n;
+dSW = diag_prod(S, W).';
+ests = norm(B,'fro')^2 - vecnorm(S).^2 + abs(dSW).^2 .* scale - nu*n;
 t = mean(ests);
 err = std(ests)/sqrt(m);
 end
