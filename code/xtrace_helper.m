@@ -14,12 +14,11 @@ end
 %% Quantities needed for trace estimation
 H = Q'*Z; HW = H*W; T=Z'*Om;
 dSW = diag_prod(W, S); dSHS = diag_prod(S, H*S);
-dOmY = diag_prod(Om, Y); dWR = diag_prod(W, R);
 dTW = diag_prod(T, W); dWHW = diag_prod(W, HW);
 dSRmHW = diag_prod(S, R-HW); dTmHRS = diag_prod(T-H'*W,S);
 
 % Trace estimate
-ests = trace(H)*ones(m,1) - dSHS + (dOmY - dWR - dTW + dWHW...
+ests = trace(H)*ones(m,1) - dSHS + (- dTW + dWHW...
     + conj(dSW) .* dSRmHW + abs(dSW).^2 .* dSHS + dTmHRS .* dSW) .* scale;
 t = mean(ests);
 err = std(ests)/sqrt(m);
