@@ -13,7 +13,9 @@ Y = matvec(Om);
 
 %% Quantities needed for diagonal estimation
 Z = adjvec(Q); T=Z'*Om;
-S = cnormr(eye(size(R,1)) - triu(R,1) / R)';
+warning('off','MATLAB:nearlySingularMatrix');
+S = cnormc(inv(R)');
+warning('on','MATLAB:nearlySingularMatrix');
 dQZ = diag_prod(Q',Z'); dQSSZ = diag_prod((Q*S)',(Z*S)');
 dOmQT = diag_prod(Om',(Q*T).'); dOmY = diag_prod(Om',Y.');
 dOmQSST = diag_prod(Om',(Q*S*diag(diag_prod(S,T))).');

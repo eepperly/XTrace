@@ -11,7 +11,9 @@ B = R/C; % Nystrom approx is Q*B*B'*Q'
 if improved
     [QQ,RR] = qr(Om,0);
     WW = QQ'*Om; 
-    SS = cnormr(eye(size(RR,1)) - triu(RR,1) / RR)';
+    warning('off','MATLAB:nearlySingularMatrix');
+    SS = cnormc(inv(RR)');
+    warning('on','MATLAB:nearlySingularMatrix');
     scale = (n - m + 1) ./ (n - vecnorm(WW).^2 ...
         + (abs(diag_prod(SS,WW)') .* vecnorm(SS)).^2);
 else

@@ -3,10 +3,12 @@ function [t,err] = xtrace_helper(Om, Z, Q, R, improved)
 %% Normalization
 [n,m] = size(Om);
 W = Q'*Om; 
-S = cnormr(eye(size(R,1)) - triu(R,1) / R)';
+warning('off','MATLAB:nearlySingularMatrix');
+S = cnormc(inv(R)');
+warning('on','MATLAB:nearlySingularMatrix');
 if improved
     scale = (n - m + 1) ./ (n - (vecnorm(W)').^2 ...
-        + (abs(diag_prod(S,W)) .* (vecnorm(S)')).^2);
+        + abs(diag_prod(S,W) .* vecnorm(S)').^2);
 else
     scale = ones(m,1);
 end
