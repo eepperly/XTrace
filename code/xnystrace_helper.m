@@ -15,7 +15,7 @@ if improved
     SS = cnormc(inv(RR)');
     warning('on','MATLAB:nearlySingularMatrix');
     scale = (n - m + 1) ./ (n - vecnorm(WW).^2 ...
-        + (abs(diag_prod(SS,WW)') .* vecnorm(SS)).^2);
+        + abs(diag_prod(SS,WW)' .* vecnorm(SS)).^2);
 else
     scale = ones(1,m);
 end
