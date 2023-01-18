@@ -2,9 +2,9 @@ function d = xdiag(matvec, adjvec, n, m, varargin)
 m = floor(m/2);
 
 %% Choose test matrix
-[Om,improved] = generate_test_matrix(n,m,'signs',varargin{:});
-if improved
-    error('Improved test vectors not implemented for XDiag')
+Om = generate_test_matrix(n,m,'signs',varargin{:});
+if ~isempty(varargin) && ~strcmp(varargin{1}, 'signs')
+    error('XDiag only implemented with random signs')
 end
 
 %% Randomized SVD
