@@ -26,4 +26,8 @@ for i = 1:length(varargin)
 end
 
 if ~adjvec_set; adjvec = matvec; end
+if ~n_set
+    error(['Size of input matrix must be specified if matrix'...
+        ' is provided as a function handle'])
+end
 end
