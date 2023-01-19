@@ -1,9 +1,10 @@
-function d = xdiag(matvec, adjvec, n, m, varargin)
+function d = xdiag(A, m, varargin)
+[matvec,n,adjvec] = process_matrix(A, varargin{:});
 m = floor(m/2);
 
 %% Choose test matrix
-Om = generate_test_matrix(n,m,'signs',varargin{:});
-if ~isempty(varargin) && ~strcmp(varargin{1}, 'signs')
+[Om,~,type] = generate_test_matrix(n,m,'signs',varargin{:});
+if ~strcmp(type, 'signs')
     error('XDiag only implemented with random signs')
 end
 

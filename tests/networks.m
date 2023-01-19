@@ -12,7 +12,7 @@ else
         'https://sparse.tamu.edu/Pajek/yeast'])
 end
 A = Problem.A;
-    d = eig(A);
+d = eig(A);
 trials = 1000;
 close all
 
@@ -44,7 +44,7 @@ for i = 1:2
             errs = [];
             ests = [];
             for l = 1:trials
-                d = method(matvec, matvec, size(A,1), m, 'signs');
+                d = method(matvec, m, size(A,1), 'signs');
                 errs(end+1) = norm(d - target,"inf");
             end
             errors(:,end+1) = mean(errs) / norm(target,"inf");

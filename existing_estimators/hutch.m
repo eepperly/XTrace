@@ -1,4 +1,5 @@
-function [t,est] = hutch(matvec, n, m, varargin)
+function [t,est] = hutch(A, m, varargin)
+[matvec,n] = process_matrix(A, varargin{:});
 
 addpath('../code')
 Omega = generate_test_matrix(n,m,'signs',varargin{:});

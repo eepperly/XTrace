@@ -1,8 +1,12 @@
-function [Om,improved] = generate_test_matrix(n,m,default,varargin)
-if isempty(varargin)
-    type = default;
-else
-    type = varargin{1};
+function [Om,improved,type] = generate_test_matrix(n,m,default,varargin)
+type = default;
+if ~isempty(varargin)
+    for i = 1:length(varargin)
+        if ischar(varargin{i}) || isstring(varargin{i})
+            type = varargin{i};
+            break
+        end
+    end
 end
 
 improved = false;

@@ -44,7 +44,7 @@ for i = 1:length(As)
         for m = ms
             errs = [];
             for l = 1:num_trials
-                errs(end+1) = abs(method(@(x) A*x, n, m, 'signs')-trace_A);
+                errs(end+1) = abs(method(A, m, 'signs') - trace_A);
             end
             errors(end+1) = mean(errs) / trace_A;
         end

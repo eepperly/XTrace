@@ -1,4 +1,4 @@
-function trest = nystrompp(matvec,n,m,varargin)
+function trest = nystrompp(A,m,varargin)
 % NYSTROMPP Nystrom++ trace estimator
 % Implementation is a modification of:
 %   https://github.com/davpersson/A-Hutch-/blob/main/Nystrom%2B%2B/nystrompp.m
@@ -28,6 +28,7 @@ function trest = nystrompp(matvec,n,m,varargin)
 % CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 % OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 % OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+[matvec,n] = process_matrix(A, varargin{:});
 
 %Generate random matrices
 addpath('../code')

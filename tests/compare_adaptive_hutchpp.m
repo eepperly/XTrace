@@ -15,7 +15,7 @@ ranges = {[1e-2 1e0], [1e-5 1e0], [1e-10 1e0], [2e-4 1e0]};
 
 %% Parameters for experiments
 
-num_trials = 1;
+num_trials = 1000;
 num_range = 20;
 
 %% Run experiments
@@ -57,8 +57,7 @@ for i = 1:length(As)
                 fprintf('.')
             end
             errors_xtrace(k) = errors_xtrace(k) ...
-                + abs(trace_A - xtrace(@(x) A*x,n,m,'signs'))...
-                /trace_A/num_trials;
+                + abs(trace_A - xtrace(A,m,'signs'))/trace_A/num_trials;
         end
         fprintf('\n')
     end

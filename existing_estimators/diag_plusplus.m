@@ -1,7 +1,8 @@
-function d = diag_plusplus(matvec, adjvec, n, m, varargin)
+function d = diag_plusplus(A, m, varargin)
 % HUTCH_PLUSPLUS Hutch++ trace estimator
 % Implementation is a modification of:
 %    https://github.com/RaphaelArkadyMeyerNYU/HutchPlusPlus/blob/main/simple/simple_hutchplusplus.m
+[matvec,n] = process_matrix(A, varargin{:});
 
 addpath('../code')
 S = generate_test_matrix(n,ceil(m/3),'signs',varargin{:});

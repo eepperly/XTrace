@@ -1,4 +1,5 @@
-function [t,est] = lra(matvec, n, m, varargin)
+function [t,est] = lra(A, m, varargin)
+[matvec,n] = process_matrix(A, varargin{:});
 
 addpath('../code')
 S = generate_test_matrix(n,floor(m/2),'signs',varargin{:});
