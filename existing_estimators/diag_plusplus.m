@@ -4,7 +4,6 @@ function d = diag_plusplus(A, m, varargin)
 %    https://github.com/RaphaelArkadyMeyerNYU/HutchPlusPlus/blob/main/simple/simple_hutchplusplus.m
 [matvec,n] = process_matrix(A, varargin{:});
 
-addpath('../code')
 S = generate_test_matrix(n,ceil(m/3),'signs',varargin{:});
 G = generate_test_matrix(n,floor(m/3),'signs',varargin{:});
 
@@ -13,5 +12,4 @@ B = matvec(G - Q*(Q'*G));
 
 d = diag_prod(Q',(Q'*matvec(Q))*Q') ...
     + sum(G .* (B - Q*(Q'*B))) / size(G,2);
-    
 end

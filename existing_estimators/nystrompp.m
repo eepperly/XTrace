@@ -31,7 +31,6 @@ function trest = nystrompp(A,m,varargin)
 [matvec,n] = process_matrix(A, varargin{:});
 
 %Generate random matrices
-addpath('../code')
 Omega = generate_test_matrix(n,ceil(m/2),'signs',varargin{:});
 Psi = generate_test_matrix(n,floor(m/2),'signs',varargin{:});
 
