@@ -20,7 +20,7 @@ This allows us to estimate the trace of $\boldsymbol{A}$, equivalently the numbe
 
 ```
 >> load('as-Skitter.mat'); M = Problem.A; % See https://sparse.tamu.edu/SNAP/as-Skitter
->> fprintf('Approximately %e triangles in this network\n', xtrace(@(X) M*(M*(M*X))/6, 100, size(A,1)))
+>> fprintf('Approximately %e triangles in this network\n', xtrace(@(X) M*(M*(M*X))/6, 100, size(M,1)))
 Approximately 2.911425e+07 triangles in this network
 ```
 
