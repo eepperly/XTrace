@@ -3,7 +3,7 @@ function [t,err,m] = xtrace_tol(A, abstol, reltol, varargin)
 Y = zeros(n,0); Om = zeros(n,0); Z = zeros(n,0);
 err = Inf;
 if (reltol ~=0); t = Inf; else; t = 0; end
-while err >= abstol + reltol * t
+while err >= abstol + reltol * abs(t)
     % Randomized SVD    
     [NewOm,improved] = generate_test_matrix(n,max(2,size(Y,2)), ...
         'improved',varargin{:});
