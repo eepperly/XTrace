@@ -7,5 +7,6 @@ end
 n = length(evals);
 [Q,~] = qr(randn(n) + 1i*randn(n)*complex);
 A = Q * diag(evals) * Q';
+A = (A+A')/2;
 end
 

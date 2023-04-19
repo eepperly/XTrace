@@ -1,8 +1,9 @@
-function [matvec,n,adjvec] = process_matrix(A,varargin)
+function [matvec,n,adjvec,m] = process_matrix(A,varargin)
 if isnumeric(A)
     matvec = @(x) A*x;
     n = size(A,1);
     adjvec = @(x) A'*x;
+    m = size(A,2);
     return
 end
 
@@ -12,10 +13,14 @@ end
 matvec = A;
 
 n_set = false;
+m_set = false;
 adjvec_set = false;
 for i = 1:length(varargin)
     if ~n_set && isscalar(varargin{i})
         n = varargin{i}; n_set = true;
+        m = n;
+    elseif ~m_set && isscalar(varargin{i})
+        m = varargin{i}; m_set = true;
     elseif ~adjvec_set && isa(varargin{i}, 'function_handle')
         adjvec = varargin{i}; adjvec_set = true;
     end
