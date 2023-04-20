@@ -16,10 +16,11 @@ Y = G - Q*(Q'*G);
 processtime = processtime + toc;
 tic;
 B = matvec(Y);
+Z = matvec(Q);
 matvectime = matvectime + toc;
 
 tic;
-d = diag_prod(Q',(Q'*matvec(Q))*Q') ...
+d = diag_prod(Q',(Q'*Z)*Q') ...
     + sum(G .* (B - Q*(Q'*B))) / size(G,2);
 processtime = processtime + toc;
 err = NaN(size(d));
