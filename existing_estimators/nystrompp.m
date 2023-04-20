@@ -1,4 +1,4 @@
-function trest = nystrompp(A,m,varargin)
+function [trest,est,time,processtime] = nystrompp(A,m,varargin)
 % NYSTROMPP Nystrom++ trace estimator
 % Implementation is a modification of:
 %   https://github.com/davpersson/A-Hutch-/blob/main/Nystrom%2B%2B/nystrompp.m
@@ -31,13 +31,16 @@ function trest = nystrompp(A,m,varargin)
 [matvec,n] = process_matrix(A, varargin{:});
 
 %Generate random matrices
+tic;
 Omega = generate_test_matrix(n,ceil(m/2),'signs',varargin{:});
 Psi = generate_test_matrix(n,floor(m/2),'signs',varargin{:});
+processtime = toc;
 
 %Compute matrix products with A
-Y = matvec(Omega); Z = matvec(Psi);
+tic; Y = matvec(Omega); Z = matvec(Psi); matvectime = toc;
 
 %Regularizaton
+tic
 nu = sqrt(n)*eps(norm(Y));
 Y_nu = Y + nu*Omega;
 C = chol(Omega'*Y_nu);
@@ -48,7 +51,8 @@ Lambda = max(0,S^2-nu*eye(size(S)));
 tr1 = trace(Lambda);
 tr2 = 2*(product_trace(Psi',Z) - product_trace(Psi',U*(Lambda*(U'*Psi))))/m;
 trest = tr1 + tr2;
-
+processtime = processtime + toc;
+time = processtime + matvectime;
 end
 
 function t = product_trace(A,B)
